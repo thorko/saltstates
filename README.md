@@ -1,7 +1,15 @@
 # saltstates
 state modules for saltstack
 
-[toc]
+* [saltstates](#saltstates)
+   * [general usage](#general-usage)
+   * [salt.states.ufw.present](#saltstatesufwpresent)
+      * [example](#example)
+   * [salt.states.ufw.absent](#saltstatesufwabsent)
+      * [example](#example-1)
+   * [salt.states.yay.installed](#saltstatesyayinstalled)
+      * [example](#example-2)
+
 
 ## general usage
 
