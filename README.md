@@ -1,17 +1,8 @@
 # saltstates
 state modules for saltstack
 
-* [saltstates](#saltstates)
-   * [general usage](#general-usage)
-   * [salt.states.ufw.present](#saltstatesufwpresent)
-      * [example](#example)
-   * [salt.states.ufw.absent](#saltstatesufwabsent)
-      * [example](#example-1)
-   * [salt.states.yay.installed](#saltstatesyayinstalled)
-      * [example](#example-2)
 
-
-## general usage
+## saltstates general usage
 
 - create a *_states* directory in your *file_roots*
 
@@ -127,5 +118,24 @@ sensu-agent:
     - runas: yay
     - password: {{ pillar['yay_password'] }}
     - updateflag: /tmp/sensu-agent.update
+```
+
+## returners general usage
+
+- create a *_returners* directory in your *file_roots*
+- place the <returner>.py in *_returners* directory
+
+## returner.file
+
+### usage
+
+```yaml
+schedule:
+  highstate:
+    function: state.highstate
+    minutes: 10
+    returner:
+      - file
+returner.file.file: /var/log/salt-state.log
 ```
 
