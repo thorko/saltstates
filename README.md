@@ -6,9 +6,9 @@ state modules for saltstack
 
 - create a *_states* directory in your *file_roots*
 
-- place the <state>.py file in *_states* 
+- place the <state>.py file in *_states*
 
-  
+
 
 ## salt.states.ufw.present
 
@@ -20,10 +20,10 @@ create firewall rules using ufw command
 	the identifier for the firewall rule. will be added as comment and displayed at the ```ufw status``` output
 
 **mode**
-	the mode used for ufw, can be *allow* or *deny* 
+	the mode used for ufw, can be *allow* or *deny*
 
 **direction**
-	the direction for the firewall rule. can be *in* or *out* 
+	the direction for the firewall rule. can be *in* or *out*
 
 **fr**
 	from which ip prefix allow connections
@@ -58,13 +58,13 @@ port_443:
 delete firewall rules using ufw
 
 **name**
-	the identifier for the firewall rule. 
+	the identifier for the firewall rule.
 
 **mode**
-	the mode used for ufw, can be *allow* or *deny* 
+	the mode used for ufw, can be *allow* or *deny*
 
 **direction**
-	the direction for the firewall rule. can be *in* or *out* 
+	the direction for the firewall rule. can be *in* or *out*
 
 **fr**
 	from which ip prefix allow connections
@@ -94,7 +94,7 @@ port_443:
 
 ## salt.states.yay.installed
 
-(name,runas=None,password=None,updateflag=None, **kwargs)
+(name,runas=None,password=None,updateflag=None,overwrite=False, **kwargs)
 
 install aur packages with yay
 
@@ -110,6 +110,9 @@ install aur packages with yay
 **updateflag**
 	a file which is used to update the package. The file gets deleted after successful update
 
+**overwrite**
+  use pacman --overwrite '*' for yay
+
 ### example
 
 ```yaml
@@ -118,6 +121,7 @@ sensu-agent:
     - runas: yay
     - password: {{ pillar['yay_password'] }}
     - updateflag: /tmp/sensu-agent.update
+    - overwrite: True
 ```
 
 ## returners general usage
@@ -138,4 +142,3 @@ schedule:
       - file
 returner.file.file: /var/log/salt-state.log
 ```
-

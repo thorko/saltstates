@@ -32,15 +32,19 @@ def _demote(user_id, user_gid):
 
     return set_ids
 
-def _install(name,runas,password,updateflag):
+def _install(name,runas,password,updateflag,overwrite=False):
     # yay args
     # update package if updateflag is there
+    if overwrite:
+        overwrite = "--overwrite '*'"
+    else:
+        overwrite = ""
     action = "installed"
     if updateflag != None and os.path.isfile(updateflag):
-        yay_args = "--aur --answerclean None --answeredit None --answerdiff None --noconfirm --sudoflags '-S'"
+        yay_args = "--aur --answerclean None --answeredit None --answerdiff None --noconfirm --sudoflags '-S' " + overwrite
         action = "updated"
     else:
-        yay_args = "--answerclean None --answeredit None --answerdiff None --noconfirm --sudoflags '-S'"
+        yay_args = "--answerclean None --answeredit None --answerdiff None --noconfirm --sudoflags '-S' " + overwrite
     cmd = "echo '{2}' |yay -S {0} {1}".format(yay_args,name,password)
     uid=pwd.getpwnam(runas).pw_uid
     gid=pwd.getpwnam(runas).pw_gid
